@@ -1,0 +1,61 @@
+.carousel-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 480px;
+  scroll-snap-align: center;
+
+  &::scroll-marker {
+    content: '';
+    display: block;
+    height: 4px;
+    width: 40px;
+    background-color: var(--border-light);
+    cursor: pointer;
+    border-radius: 100px;
+  }
+
+  &::scroll-marker:target-current {
+    background-color: var(--border-dark);
+  }
+
+  img {
+    height: 480px;
+    width: 480px;
+    border-radius: 40px;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    p {
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .favorite-coffee {
+    .carousel {
+      .buttons-container {
+        display: none;
+      }
+
+      .cards {
+        width: 348px;
+        height: 532px;
+      }
+
+      .carousel-card {
+        img {
+          height: 348px;
+          width: 348px;
+        }
+      }
+    }
+  }
+}

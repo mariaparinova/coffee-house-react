@@ -1,0 +1,105 @@
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary-color);
+  background-color: var(--bg-color-primary);
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: background-color, color, border, 0.3s;
+
+  &:disabled {
+    color: var(--color-disabled);
+    cursor: default;
+  }
+
+  &.primary {
+    gap: 8px;
+    height: 64px;
+    min-width: 200px;
+    font-weight: 600;
+    line-height: 24px;
+    background-color: var(--bg-color-primary);
+  }
+
+  &.secondary {
+    padding: 10px 24px;
+    min-width: 200px;
+    font-weight: 600;
+    line-height: 150%;
+    background-color: var(--bg-color-primary);
+    border: solid 1px var(--border-dark);
+
+    &:disabled {
+      border-color: var(--color-disabled);
+    }
+  }
+
+  &.round {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    border: 1px solid var(--border-dark);
+    background-color: var(--bg-color-primary);
+
+    &:disabled {
+      border-color: var(--color-disabled);
+    }
+  }
+
+  &.app-store {
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 14px 20px;
+    width: 200px;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0);
+    border: solid 1px var(--border-dark);
+
+    .download-buttons-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 16px;
+
+      .title {
+        font-size: 10px;
+        line-height: 140%;
+      }
+    }
+  }
+}
+
+.round {
+  background-color: red;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:not(:disabled) {
+    &.primary:hover {
+      color: var(--text-secondary-color);
+      background-color: var(--bg-color-secondary);
+
+      svg {
+        display: block;
+      }
+    }
+
+    &.secondary:hover {
+      color: var(--text-secondary-color);
+      background-color: var(--bg-color-secondary);
+    }
+
+    &.round:hover:not(:disabled) {
+      color: var(--text-secondary-color);
+      background-color: var(--bg-color-secondary);
+    }
+
+    &.app-store:hover {
+      background-color: var(--border-dark);
+      color: var(--text-secondary-color);
+    }
+  }
+}

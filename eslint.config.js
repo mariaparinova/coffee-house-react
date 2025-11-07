@@ -5,7 +5,6 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
-import prettierConfig from 'eslint-config-prettier';
 import reactCompiler from 'eslint-plugin-react-compiler';
 import react from 'eslint-plugin-react';
 
@@ -30,7 +29,14 @@ export default defineConfig([
     },
     rules: {
       '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/no-non-null-assertion': "off",
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      'react/self-closing-comp': [
+        'error',
+        {
+          component: true,
+          html: true,
+        },
+      ],
     },
   },
 ]);
