@@ -4,6 +4,8 @@ import { CartPage } from '../pages/CartPage/CartPage.tsx';
 import { HomePage } from '../pages/HomePage/HomePage.tsx';
 import { MenuPage } from '../pages/MenuPage/MenuPage.tsx';
 import { App } from '../App.tsx';
+import { RegistrationPage } from '../pages/RegistrationPage/RegistrationPage.tsx';
+import { LoginPage } from '../pages/LoginPage/LoginPage.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +22,8 @@ export const router = createBrowserRouter([
         path: ROUTES.MENU,
         element: <MenuPage />,
       },
+      { path: ROUTES.REGISTER, element: <RegistrationPage /> },
+      { path: ROUTES.LOGIN, element: <LoginPage /> },
     ],
   },
 ]);

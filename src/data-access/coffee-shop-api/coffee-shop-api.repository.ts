@@ -91,7 +91,7 @@ export async function registerUser(user: RegistrationUserData) {
   }
 }
 
-export async function loginUser(user: { login: string; password: string }) {
+export async function loginUser(user: LoginUserData) {
   try {
     const response: Response = await fetch(`${BASE_URL}/auth/login`, {
       method: 'POST',
@@ -277,6 +277,11 @@ interface RegistrationUserResponse {
   data?: RegisteredUserDto;
   error?: string;
   message: string | string[];
+}
+
+export interface LoginUserData {
+  login: string;
+  password: string;
 }
 
 interface LoginUserResponse {

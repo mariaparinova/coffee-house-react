@@ -13,6 +13,7 @@
   &:disabled {
     color: var(--color-disabled);
     cursor: default;
+    border-color: var(--color-disabled);
   }
 
   &.primary {
@@ -21,6 +22,7 @@
     min-width: 200px;
     font-weight: 600;
     line-height: 24px;
+    border: solid 1px var(--border-dark);
     background-color: var(--bg-color-primary);
   }
 
@@ -31,22 +33,6 @@
     line-height: 150%;
     background-color: var(--bg-color-primary);
     border: solid 1px var(--border-dark);
-
-    &:disabled {
-      border-color: var(--color-disabled);
-    }
-  }
-
-  &.round {
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
-    border: 1px solid var(--border-dark);
-    background-color: var(--bg-color-primary);
-
-    &:disabled {
-      border-color: var(--color-disabled);
-    }
   }
 
   &.app-store {
@@ -72,10 +58,6 @@
   }
 }
 
-.round {
-  background-color: red;
-}
-
 @media (hover: hover) and (pointer: fine) {
   .button:not(:disabled) {
     &.primary:hover {
@@ -88,11 +70,6 @@
     }
 
     &.secondary:hover {
-      color: var(--text-secondary-color);
-      background-color: var(--bg-color-secondary);
-    }
-
-    &.round:hover:not(:disabled) {
       color: var(--text-secondary-color);
       background-color: var(--bg-color-secondary);
     }
