@@ -9,4 +9,6 @@ export const ERROR_MESSAGES = {
   VALUE_MUST_BE_GRATER_THAN_1: 'Value must be greater than 1',
   INCORRECT_LOGIN_OR_PASSWORD: 'Incorrect login or password',
   SMTH_WENT_WRONG_TRY_AGAIN: 'Something went wrong. Please, Try again',
+  SMTH_WENT_WRONG_REFRESH_PAGE: 'Something went wrong. Please, refresh the page',
+  NO_ITEMS_FOUND: 'No items found',
 };

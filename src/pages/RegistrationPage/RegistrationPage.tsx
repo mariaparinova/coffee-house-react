@@ -8,7 +8,7 @@ import {
   type UserRegistrationData,
   UserRegistrationSchema,
 } from './registrationSchema.ts';
-import { type ChangeEvent, useState } from 'react';
+import { type ChangeEvent, useEffect, useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { userStore } from '../../store/userStore.ts';
@@ -65,9 +65,11 @@ export function RegistrationPage() {
   const { user, setUser } = userStore();
   const navigate = useNavigate();
 
-  if (user) {
-    navigate(ROUTES.MENU);
-  }
+  useEffect(() => {
+    if (user) {
+      navigate(ROUTES.MENU.replace(':category', 'coffee'));
+    }
+  });
 
   const initCity = cities[0];
   const [currentStreets, setCurrentStreets] = useState(streets.get(initCity));

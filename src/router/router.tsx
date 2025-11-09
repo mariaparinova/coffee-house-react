@@ -6,6 +6,7 @@ import { MenuPage } from '../pages/MenuPage/MenuPage.tsx';
 import { App } from '../App.tsx';
 import { RegistrationPage } from '../pages/RegistrationPage/RegistrationPage.tsx';
 import { LoginPage } from '../pages/LoginPage/LoginPage.tsx';
+import { DetailedCard } from '../pages/MenuPage/DetailedCard/DetailedCard.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,12 @@ export const router = createBrowserRouter([
       {
         path: ROUTES.MENU,
         element: <MenuPage />,
+        children: [
+          {
+            path: ROUTES.DETAILED_MENU_ITEM,
+            element: <DetailedCard />,
+          },
+        ],
       },
       { path: ROUTES.REGISTER, element: <RegistrationPage /> },
       { path: ROUTES.LOGIN, element: <LoginPage /> },

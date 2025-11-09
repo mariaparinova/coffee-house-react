@@ -3,6 +3,7 @@ import type { FavoriteCoffee } from '../../../../services/favoriteCoffee.ts';
 
 export function CarouselCard(props: FavoriteCoffee) {
   const { name, description, price } = props;
+  const itemPrice = price ? `$${price.toFixed(2)}` : '';
 
   return (
     <div className="carousel-card">
@@ -14,7 +15,7 @@ export function CarouselCard(props: FavoriteCoffee) {
       <div className="details">
         <h3>{name}</h3>
         <p>{description}</p>
-        <h3>{`$${price.toFixed(2)}`}</h3>
+        <h3>{itemPrice}</h3>
       </div>
     </div>
   );

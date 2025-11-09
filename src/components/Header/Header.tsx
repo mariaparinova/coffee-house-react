@@ -3,12 +3,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../router/routes.ts';
 import IconShoppingBag from '../../../src/assets/icons/shopping-bag.svg?react';
 import IconCoffeeCup from '../../../src/assets/icons/coffee-cup.svg?react';
-import { menuStore } from '../../store/menuStore.ts';
+import { cartStore } from '../../store/cartStore.ts';
 import { useState } from 'react';
 import clsx from 'clsx';
 
 export function Header() {
-  const { menuItems } = menuStore();
+  const { cartItems } = cartStore();
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const headerClassNames = clsx('header', { 'burger-opened': isBurgerOpen });
   const location = useLocation();
@@ -40,9 +40,12 @@ export function Header() {
       <div className="actions">
         <Link to={ROUTES.CART} className="item cart">
           <IconShoppingBag />
-          <span className="counter">{menuItems.length}</span>
+          <span className="counter">{cartItems.length}</span>
         </Link>
-        <Link to={ROUTES.MENU} className={`item menu ${menuLinkClassName}`}>
+        <Link
+          to={ROUTES.MENU.replace(':category', 'coffee')}
+          className={`item menu ${menuLinkClassName}`}
+        >
           Menu
           <IconCoffeeCup />
         </Link>

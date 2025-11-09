@@ -35,6 +35,18 @@
     border: solid 1px var(--border-dark);
   }
 
+  &.round {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    border: 1px solid var(--border-dark);
+    background-color: var(--bg-color-primary);
+
+    &:disabled {
+      border-color: var(--color-disabled);
+    }
+  }
+
   &.app-store {
     justify-content: flex-start;
     gap: 8px;
@@ -63,13 +75,10 @@
     &.primary:hover {
       color: var(--text-secondary-color);
       background-color: var(--bg-color-secondary);
-
-      svg {
-        display: block;
-      }
     }
 
-    &.secondary:hover {
+    &.secondary:hover:not(:disabled),
+    &.round:hover:not(:disabled) {
       color: var(--text-secondary-color);
       background-color: var(--bg-color-secondary);
     }

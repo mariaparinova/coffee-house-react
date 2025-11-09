@@ -3,10 +3,11 @@ import type { MouseEventHandler, ReactNode } from 'react';
 import clsx from 'clsx';
 
 export function Button(props: ButtonProps) {
-  const { style, children, type = ButtonType.Button, className, isDisabled, onClick } = props;
+  const { style, children, type = ButtonType.Button, className, isDisabled, onClick, id } = props;
 
   return (
     <button
+      id={id}
       type={type}
       className={clsx('button', style, className)}
       disabled={isDisabled}
@@ -19,6 +20,7 @@ export function Button(props: ButtonProps) {
 
 interface ButtonProps {
   children: ReactNode;
+  id?: string;
   style?: ButtonStyle;
   type?: ButtonType;
   className?: string;
@@ -29,7 +31,6 @@ interface ButtonProps {
 export enum ButtonStyle {
   Primary = 'primary',
   Secondary = 'secondary',
-  IconBtn = 'icon-btn',
   Round = 'round',
 }
 

@@ -14,15 +14,17 @@ import { Spinner } from '../../components/Spinner/Spinner.tsx';
 import { ERROR_MESSAGES } from '../../constants/validation-messages.ts';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../router/routes.ts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function LoginPage() {
   const { user, setUser } = userStore();
   const navigate = useNavigate();
 
-  if (user) {
-    navigate(ROUTES.MENU);
-  }
+  useEffect(() => {
+    if (user) {
+      navigate(ROUTES.MENU.replace(':category', 'coffee'));
+    }
+  });
 
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
