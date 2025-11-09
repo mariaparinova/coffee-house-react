@@ -3,29 +3,28 @@ import { userStore } from '../../store/userStore.ts';
 import clsx from 'clsx';
 
 export function Prices(props: PricesProps) {
-  const { regularPrice, discountPrice } = props;
+  const { regularPrice = 0, discountPrice = 0 } = props;
   const { user } = userStore();
-  const regularPriceClassNames = clsx('regular-price', { 'old-price': user && discountPrice });
+  const isRenderDiscountedPrice = user && discountPrice && discountPrice < regularPrice;
+  const regularPriceClassNames = clsx('regular-price', { 'old-price': isRenderDiscountedPrice });
 
   return (
     <div className="price-container">
-      {user && <h3 className="discounted-price">{formatPrice(discountPrice)}</h3>}
+      {!!isRenderDiscountedPrice && (
+        <h3 className="discounted-price">{formatPrice(discountPrice || regularPrice)}</h3>
+      )}
       <h3 className={regularPriceClassNames}>{formatPrice(regularPrice)}</h3>
     </div>
   );
 }
 
 function formatPrice(price: string | number | undefined): string {
-  if (!price) {
-    return '';
-  }
-
   if (typeof price === 'number') {
     return `$${price.toFixed(2)}`;
   }
 
   const priceNumber = Number(price);
-  price = priceNumber ? `$${priceNumber.toFixed(2)}` : '';
+  price = priceNumber ? `$${priceNumber.toFixed(2)}` : ` $0.00`;
 
   return price;
 }

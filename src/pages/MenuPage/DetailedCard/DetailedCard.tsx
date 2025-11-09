@@ -39,11 +39,17 @@ export function DetailedCard() {
       const sizes = Object.entries(data.sizes);
 
       setActiveSize(sizes[0][0]);
+
+      const newSizeRegularPrice = +sizes[0][1].price;
+      const newSizeDiscountPrice = sizes[0][1].discountPrice
+        ? +sizes[0][1].discountPrice
+        : newSizeRegularPrice;
+
       setTotalPrice({
-        previousSizeRegularPrice: +sizes[0][1].price,
-        previousSizeDiscountPrice: sizes[0][1].discountPrice ? +sizes[0][1].discountPrice : 0,
-        totalRegularPrice: +sizes[0][1].price,
-        totalDiscountedPrice: sizes[0][1].discountPrice ? +sizes[0][1].discountPrice : 0,
+        previousSizeRegularPrice: newSizeRegularPrice,
+        previousSizeDiscountPrice: newSizeDiscountPrice,
+        totalRegularPrice: newSizeRegularPrice,
+        totalDiscountedPrice: newSizeDiscountPrice,
       });
     }
   }, [data]);
@@ -90,13 +96,16 @@ export function DetailedCard() {
 
               setTotalPrice((prevState) => {
                 const newSizeRegularPrice = +size.price;
+
                 const newSizeDiscountPrice = size.discountPrice
                   ? +size.discountPrice
                   : newSizeRegularPrice;
+
                 const totalRegularPrice =
                   prevState.totalRegularPrice -
                   prevState.previousSizeRegularPrice +
                   newSizeRegularPrice;
+
                 const totalDiscountedPrice =
                   prevState.totalDiscountedPrice -
                   prevState.previousSizeDiscountPrice +
@@ -104,9 +113,7 @@ export function DetailedCard() {
 
                 return {
                   previousSizeRegularPrice: newSizeRegularPrice,
-                  previousSizeDiscountPrice: size.discountPrice
-                    ? +size.discountPrice
-                    : newSizeRegularPrice,
+                  previousSizeDiscountPrice: newSizeDiscountPrice,
                   totalRegularPrice,
                   totalDiscountedPrice,
                 };

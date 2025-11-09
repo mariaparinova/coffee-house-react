@@ -2,22 +2,46 @@ import { create } from 'zustand';
 
 export const cartStore = create<CartStore>((set) => ({
   cartItems: [],
+  prise: {
+    regular: 0,
+    discounted: 0,
+  },
 
-  addItemToCart: (item) => set((state) => ({ cartItems: [...state.cartItems, item] })),
+  addItemToCart: (item) =>
+    set((state) => {
+      return {
+        cartItems: [...state.cartItems, item],
+        prise: {
+          regular: state.prise.regular + item.regularPrice,
+          discounted: state.prise.discounted + (item.discountPrice || item.regularPrice),
+        },
+      };
+    }),
 
   removeItemFromCart: (idInOrder) => {
     set((state) => {
-      const index = state.cartItems.findIndex((item) => item.idInOrder === idInOrder);
-
-      if (index === -1) {
+      const itemToRemove = state.cartItems.find((item) => item.idInOrder === idInOrder);
+      if (!itemToRemove) {
         return state;
       }
 
-      return { cartItems: state.cartItems.splice(index, 1) };
+      const updatedCart = state.cartItems.filter((item) => item.idInOrder !== idInOrder);
+
+      return {
+        cartItems: updatedCart,
+        prise: {
+          regular: state.prise.regular - itemToRemove.regularPrice,
+          discounted:
+            state.prise.discounted - (itemToRemove.discountPrice ?? itemToRemove.regularPrice),
+        },
+      };
     });
   },
 
-  removeAllItemsFromCart: () => set(() => ({ cartItems: [] })),
+  removeAllItemsFromCart: () =>
+    set(() => {
+      return { cartItems: [], prise: { regular: 0, discounted: 0 } };
+    }),
 }));
 
 export interface CartItem {
@@ -33,6 +57,10 @@ export interface CartItem {
 
 interface CartStore {
   cartItems: CartItem[];
+  prise: {
+    regular: number;
+    discounted: number;
+  };
 
   addItemToCart: (item: CartItem) => void;
   removeItemFromCart: (idInOrder: string) => void;

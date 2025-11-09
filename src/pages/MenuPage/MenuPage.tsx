@@ -123,7 +123,7 @@ export function MenuPage() {
       <div className="tabs">{renderTabs()}</div>
       <div className="cards-container">
         {isPending && <Spinner />}
-        {isError && (
+        {isError && !data && (
           <span className="helper-text">{ERROR_MESSAGES.SMTH_WENT_WRONG_REFRESH_PAGE}</span>
         )}
         {data && renderCards()}
