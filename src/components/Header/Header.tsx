@@ -6,13 +6,18 @@ import IconCoffeeCup from '../../../src/assets/icons/coffee-cup.svg?react';
 import { cartStore } from '../../store/cartStore.ts';
 import { useState } from 'react';
 import clsx from 'clsx';
+import { userStore } from '../../store/userStore.ts';
+import { Button, ButtonStyle } from '../Button/Button.tsx';
+import IconUser from '../../../src/assets/icons/user.svg?react';
 
 export function Header() {
-  const { cartItems } = cartStore();
+  const { cartItems, removeAllItemsFromCart } = cartStore();
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const headerClassNames = clsx('header', { 'burger-opened': isBurgerOpen });
   const location = useLocation();
   const menuLinkClassName = location.pathname.includes('menu') ? 'not-active-link' : '';
+  const { user, removeUser } = userStore();
+  const [isUserIconOpened, setIsUserIconOpened] = useState(false);
 
   function renderHeaderLinks() {
     return (
@@ -49,6 +54,47 @@ export function Header() {
           Menu
           <IconCoffeeCup />
         </Link>
+        <div
+          className={`user-container ${isUserIconOpened ? 'opened' : ''}`}
+          onMouseEnter={() => setIsUserIconOpened(true)}
+          onMouseLeave={() => setIsUserIconOpened(false)}
+        >
+          <IconUser />
+          {isUserIconOpened && (
+            <div className="buttons-container">
+              {!!user && (
+                <Button
+                  style={ButtonStyle.Secondary}
+                  onClick={() => {
+                    removeUser();
+                    setIsUserIconOpened(false);
+                    removeAllItemsFromCart();
+                  }}
+                >
+                  Sign Out
+                </Button>
+              )}
+              {!user && (
+                <>
+                  <Link
+                    to={ROUTES.LOGIN}
+                    className="button secondary no-underline"
+                    onClick={() => setIsUserIconOpened(false)}
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    to={ROUTES.REGISTER}
+                    className="button secondary no-underline"
+                    onClick={() => setIsUserIconOpened(false)}
+                  >
+                    Registration
+                  </Link>
+                </>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     );
   }

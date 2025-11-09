@@ -44,12 +44,6 @@
           object-fit: cover;
           border-radius: 20px;
         }
-
-        .details {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
       }
 
       .to-trash {
@@ -73,7 +67,7 @@
   .cart-details {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 40px;
     justify-content: center;
     margin-top: 40px;
     width: 100%;

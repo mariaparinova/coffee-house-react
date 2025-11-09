@@ -28,8 +28,10 @@ export function CartPage() {
         removeItemFromCart(menuItem.idInOrder);
       };
 
+      const itemKey = `${menuItem.id}-${menuItem.weightInGram}-${menuItem.additiveNames.join('-')}`;
+
       return (
-        <div key={menuItem.id} className="item">
+        <div key={itemKey} className="item">
           <div className="to-trash" onClick={handleRemoveMenuItem}>
             <IconTrash />
           </div>
@@ -38,7 +40,7 @@ export function CartPage() {
             <div className="details">
               <h3>{menuItem.name}</h3>
               <span className="size">{menuItem.weightInGram}</span>
-              <span className="additives">{additivesStr}</span>
+              <span className="additives">{` ${additivesStr}`}</span>
             </div>
           </div>
           <Prices regularPrice={menuItem.regularPrice} discountPrice={menuItem.discountPrice} />
