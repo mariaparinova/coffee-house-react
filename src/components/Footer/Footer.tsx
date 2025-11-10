@@ -1,7 +1,7 @@
 import './Footer.css';
-import IconTwitter from '../../../src/assets/icons/twitter.svg?react';
-import IconInstagram from '../../../src/assets/icons/instagram.svg?react';
-import IconFacebook from '../../../src/assets/icons/facebook.svg?react';
+import IconTwitter from '../../assets/icons/twitter.svg?react';
+import IconInstagram from '../../assets/icons/instagram.svg?react';
+import IconFacebook from '../../assets/icons/facebook.svg?react';
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -26,20 +26,20 @@ const socialNetworks: SocialNetwork[] = [
 const contacts: Contact[] = [
   {
     name: 'map',
-    iconPath: '../../../src/assets/icons/map.svg',
+    iconPath: '/icons/map.svg',
     text: '8558 Green Rd., LA',
     link: 'https://maps.app.goo.gl/m9LKYuU6HcqbPURk9',
     isExternal: true,
   },
   {
     name: 'phone',
-    iconPath: '../../../src/assets/icons/phone.svg',
+    iconPath: '/icons/phone.svg',
     text: '+1 (603) 555-0123',
     link: 'tel:+16035550123',
   },
   {
     name: 'business hours',
-    iconPath: '../../../src/assets/icons/clock.svg',
+    iconPath: '/icons/clock.svg',
     text: 'Mon-Sat: 9:00 AM – 23:00 PM',
   },
 ];
@@ -76,7 +76,7 @@ export function Footer() {
       }
 
       return (
-        <div key={c.name} className={className}>
+        <div key={c.name} className={className} id="contact-us">
           {imgElement}
           <span>{c.text}</span>
         </div>

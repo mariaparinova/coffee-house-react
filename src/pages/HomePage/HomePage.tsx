@@ -4,8 +4,8 @@ import { ROUTES } from '../../router/routes.ts';
 import IconCap from '../../assets/icons/coffee-cup.svg?react';
 import { Carousel } from './Сarousel/Сarousel.tsx';
 import { Button } from '../../components/Button/Button.tsx';
-import IconAppleStore from '../../../src/assets/icons/apple-store.svg?react';
-import IconGoogleStore from '../../../src/assets/icons/google-store.svg?react';
+import IconAppleStore from '../../assets/icons/apple-store.svg?react';
+import IconGoogleStore from '../../assets/icons/google-store.svg?react';
 
 export function HomePage() {
   const renderIntroductionBlock = () => {
@@ -13,7 +13,7 @@ export function HomePage() {
       <div className="intro">
         <div className="video-container">
           <video autoPlay muted loop>
-            <source src="../../../src/assets/video/introduction.mp4" type="video/mp4" />
+            <source src="/video/introduction.mp4" type="video/mp4" />
           </video>
         </div>
         <div className="content">
@@ -35,7 +35,7 @@ export function HomePage() {
   };
 
   const renderGalleryBlock = () => {
-    const pathToImgFolder = '../../../src/assets/images/gallery';
+    const pathToImgFolder = '/images/gallery';
 
     return (
       <div className="gallery" id="about">
@@ -125,11 +125,7 @@ export function HomePage() {
             </Button>
           </div>
         </div>
-        <img
-          className="picture"
-          src="../../../src/assets/images/app-adventure/mobile-screens.png"
-          alt="App picture"
-        />
+        <img className="picture" src="/images/app-adventure/mobile-screens.png" alt="App picture" />
       </div>
     );
   };

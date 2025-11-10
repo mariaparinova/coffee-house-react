@@ -1,7 +1,7 @@
 import './CartPage.css';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../router/routes.ts';
-import IconTrash from '../../../src/assets/icons/trash.svg?react';
+import IconTrash from '../../assets/icons/trash.svg?react';
 import { cartStore } from '../../store/cartStore.ts';
 import { Prices } from '../../components/Prices/Prices.tsx';
 import { userStore } from '../../store/userStore.ts';
@@ -11,6 +11,7 @@ import { sendOrder } from '../../data-access/coffee-shop-api/coffee-shop-api.rep
 import { Notification } from '../../components/Notification/Notification.tsx';
 import { ERROR_MESSAGES } from '../../constants/validation-messages.ts';
 import { Spinner } from '../../components/Spinner/Spinner.tsx';
+import { getImgPath } from '../../utils/getImagePath.ts';
 
 export function CartPage() {
   const { cartItems, removeAllItemsFromCart, removeItemFromCart, prise } = cartStore();
@@ -21,7 +22,6 @@ export function CartPage() {
 
   const renderCartItems = () => {
     return cartItems.map((menuItem) => {
-      const imagePath = `../../../src/assets/images/${menuItem.category}/${menuItem.name.toLowerCase().replace(/\s+/g, '-')}.jpg`;
       const additivesStr = menuItem.additiveNames.join(', ');
 
       const handleRemoveMenuItem = () => {
@@ -36,7 +36,11 @@ export function CartPage() {
             <IconTrash />
           </div>
           <div className="img-container">
-            <img className="img" alt={menuItem.name} src={imagePath} />
+            <img
+              className="img"
+              alt={menuItem.name}
+              src={getImgPath({ category: menuItem.category, name: menuItem.name })}
+            />
             <div className="details">
               <h3>{menuItem.name}</h3>
               <span className="size">{menuItem.weightInGram}</span>

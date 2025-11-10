@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { menuPageStore } from '../../../store/menuPageStore.ts';
 import { cartStore } from '../../../store/cartStore.ts';
+import { getImgPath } from '../../../utils/getImagePath.ts';
 
 export function DetailedCard() {
   const { id } = useParams();
@@ -67,14 +68,6 @@ export function DetailedCard() {
         <Spinner />
       </div>
     );
-  };
-
-  const getImgPath = () => {
-    if (!data) {
-      return '';
-    }
-
-    return `../../../src/assets/images/${data.category}/${data.name.toLowerCase().replace(/\s+/g, '-')}.jpg`;
   };
 
   const renderSizes = () => {
@@ -227,7 +220,11 @@ export function DetailedCard() {
         <div className="bg overlay" onClick={closeDetailsCard} />
         <div className="detailed-card">
           <div className="img-container">
-            <img className="img" alt={`Picture of ${data.name}`} src={getImgPath()} />
+            <img
+              className="img"
+              alt={`Picture of ${data.name}`}
+              src={getImgPath({ category: data.category, name: data.name })}
+            />
           </div>
           <div className="details">
             <div className="item details-header">

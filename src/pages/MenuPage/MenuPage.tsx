@@ -1,6 +1,6 @@
 import './MenuPage.css';
 import { Button, ButtonStyle } from '../../components/Button/Button.tsx';
-import IconLoadMore from '../../../src/assets/icons/arrow-round.svg?react';
+import IconLoadMore from '../../assets/icons/arrow-round.svg?react';
 import { useQuery } from '@tanstack/react-query';
 import { getMenu } from '../../data-access/coffee-shop-api/coffee-shop-api.repository.ts';
 import { useEffect, useState } from 'react';
@@ -56,7 +56,7 @@ export function MenuPage() {
       return (
         <div key={tabName} className={tabClassName} data-category={tabName} onClick={handleClick}>
           <div className="icon-container">
-            <img src={`../../../src/assets/icons/tab-icons/${tabName}.png`} alt="Coffee icon" />
+            <img src={`/icons/tab-icons/${tabName}.png`} alt="Coffee icon" />
           </div>
           {tabName}
         </div>

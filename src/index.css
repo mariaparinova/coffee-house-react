@@ -75,6 +75,14 @@ a {
       display: none;
     }
   }
+
+  &.active {
+    cursor: default;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
 }
 
 h1 {

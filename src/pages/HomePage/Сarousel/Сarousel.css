@@ -10,7 +10,7 @@
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     width: 480px;
-    height: 640px;
+    min-height: 300px;
     scroll-marker-group: after;
 
     &::scroll-button(left),

@@ -1,15 +1,15 @@
 import './Card.css';
 import type { MenuItem } from '../../../services/menuItem.ts';
 import { Prices } from '../../../components/Prices/Prices.tsx';
+import { getImgPath } from '../../../utils/getImagePath.ts';
 
 export function Card(props: MenuItemProps) {
   const { name, description, regularPrice, discountPrice, category, onClick } = props;
-  const imgPath = `../../../src/assets/images/${category}/${name.toLowerCase().replace(/\s+/g, '-')}.jpg`;
 
   return (
     <div className="card" onClick={onClick}>
       <div className="img-container">
-        <img className="img" alt={`Picture of ${name}`} src={imgPath} />
+        <img className="img" alt={`Picture of ${name}`} src={getImgPath({ category, name })} />
       </div>
       <div className="description">
         <h3>{name}</h3>

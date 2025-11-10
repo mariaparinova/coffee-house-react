@@ -1,5 +1,6 @@
 import './CarouselCard.css';
 import type { FavoriteCoffee } from '../../../../services/favoriteCoffee.ts';
+import { getImgPath } from '../../../../utils/getImagePath.ts';
 
 export function CarouselCard(props: FavoriteCoffee) {
   const { name, description, price } = props;
@@ -9,7 +10,7 @@ export function CarouselCard(props: FavoriteCoffee) {
     <div className="carousel-card">
       <img
         className="img"
-        src={`../../../src/assets/images/coffee/${name.toLowerCase().replace(/\s+/g, '-')}.jpg`}
+        src={getImgPath({ category: 'coffee', name: name })}
         alt="Picture of coffee"
       />
       <div className="details">

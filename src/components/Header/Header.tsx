@@ -1,21 +1,22 @@
 import './Header.css';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../router/routes.ts';
-import IconShoppingBag from '../../../src/assets/icons/shopping-bag.svg?react';
-import IconCoffeeCup from '../../../src/assets/icons/coffee-cup.svg?react';
+import IconShoppingBag from '../../assets/icons/shopping-bag.svg?react';
+import IconCoffeeCup from '../../assets/icons/coffee-cup.svg?react';
 import { cartStore } from '../../store/cartStore.ts';
 import { useState } from 'react';
 import clsx from 'clsx';
 import { userStore } from '../../store/userStore.ts';
 import { Button, ButtonStyle } from '../Button/Button.tsx';
-import IconUser from '../../../src/assets/icons/user.svg?react';
+import IconUser from '../../assets/icons/user.svg?react';
+import { HashLink } from 'react-router-hash-link';
 
 export function Header() {
   const { cartItems, removeAllItemsFromCart } = cartStore();
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const headerClassNames = clsx('header', { 'burger-opened': isBurgerOpen });
   const location = useLocation();
-  const menuLinkClassName = location.pathname.includes('menu') ? 'not-active-link' : '';
+  const menuLinkClassName = location.pathname.includes('menu') ? 'active' : '';
   const { user, removeUser } = userStore();
   const [isUserIconOpened, setIsUserIconOpened] = useState(false);
 
@@ -24,16 +25,24 @@ export function Header() {
       <nav>
         <ul className="navigation">
           <li>
-            <Link to="#favorite-coffee">Favorite Coffee</Link>
+            <HashLink smooth to="/#favorite-coffee">
+              Favorite Coffee
+            </HashLink>
           </li>
           <li>
-            <Link to="#about">About</Link>
+            <HashLink smooth to="/#about">
+              About
+            </HashLink>
           </li>
           <li>
-            <Link to="#mobile-app">Mobile app</Link>
+            <HashLink smooth to="/#mobile-app">
+              Mobile app
+            </HashLink>
           </li>
           <li>
-            <Link to="#contact-us">Contact us</Link>
+            <HashLink smooth to="#contact-us">
+              Contact us
+            </HashLink>
           </li>
         </ul>
       </nav>
@@ -102,7 +111,7 @@ export function Header() {
   return (
     <header className={headerClassNames}>
       <Link className="logo no-underline" to={ROUTES.ROOT}>
-        <img src="../../../src/assets/icons/logo.svg" alt="logo" />
+        <img src="/logo.svg" alt="logo" />
       </Link>
       {renderHeaderLinks()}
       {renderHeaderActions()}
