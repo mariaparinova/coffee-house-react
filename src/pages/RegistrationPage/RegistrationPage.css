@@ -1,0 +1,22 @@
+.registration-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+
+  .form-field-container {
+    &.house-number {
+      width: 200px;
+    }
+
+    &.payment-method {
+      width: 140px;
+    }
+  }
+
+  .form-fields-group {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+  }
+}

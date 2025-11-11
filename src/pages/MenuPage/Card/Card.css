@@ -1,0 +1,39 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 310px;
+  height: 506px;
+  border: 1px solid var(--border-light);
+  border-radius: 40px;
+  cursor: pointer;
+
+  .img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 310px;
+    height: 310px;
+    border-radius: 40px;
+    overflow: hidden;
+
+    .img {
+      width: 320px;
+      height: 330px;
+      object-fit: cover;
+      border-radius: 40px;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  .description {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+
+    .text {
+      flex-grow: 1;
+    }
+  }
+}
