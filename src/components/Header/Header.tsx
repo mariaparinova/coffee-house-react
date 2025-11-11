@@ -11,6 +11,25 @@ import { Button, ButtonStyle } from '../Button/Button.tsx';
 import IconUser from '../../assets/icons/user.svg?react';
 import { HashLink } from 'react-router-hash-link';
 
+const navigationLinks = [
+  {
+    name: 'Favorite Coffee',
+    path: '/#favorite-coffee',
+  },
+  {
+    name: 'About',
+    path: '/#about',
+  },
+  {
+    name: 'Mobile app',
+    path: '/#mobile-app',
+  },
+  {
+    name: 'Contact us',
+    path: '#contact-us',
+  },
+];
+
 export function Header() {
   const { cartItems, removeAllItemsFromCart } = cartStore();
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
@@ -24,26 +43,15 @@ export function Header() {
     return (
       <nav>
         <ul className="navigation">
-          <li>
-            <HashLink smooth to="/#favorite-coffee">
-              Favorite Coffee
-            </HashLink>
-          </li>
-          <li>
-            <HashLink smooth to="/#about">
-              About
-            </HashLink>
-          </li>
-          <li>
-            <HashLink smooth to="/#mobile-app">
-              Mobile app
-            </HashLink>
-          </li>
-          <li>
-            <HashLink smooth to="#contact-us">
-              Contact us
-            </HashLink>
-          </li>
+          {navigationLinks.map((link) => {
+            return (
+              <li key={link.name}>
+                <HashLink smooth to={link.path} onClick={() => setIsBurgerOpen(false)}>
+                  {link.name}
+                </HashLink>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     );
@@ -52,13 +60,14 @@ export function Header() {
   function renderHeaderActions() {
     return (
       <div className="actions">
-        <Link to={ROUTES.CART} className="item cart">
+        <Link to={ROUTES.CART} className="item cart" onClick={() => setIsBurgerOpen(false)}>
           <IconShoppingBag />
           <span className="counter">{cartItems.length}</span>
         </Link>
         <Link
           to={ROUTES.MENU.replace(':category', 'coffee')}
           className={`item menu ${menuLinkClassName}`}
+          onClick={() => setIsBurgerOpen(false)}
         >
           Menu
           <IconCoffeeCup />
@@ -77,6 +86,7 @@ export function Header() {
                   onClick={() => {
                     removeUser();
                     setIsUserIconOpened(false);
+                    setIsBurgerOpen(false);
                     removeAllItemsFromCart();
                   }}
                 >
@@ -88,14 +98,20 @@ export function Header() {
                   <Link
                     to={ROUTES.LOGIN}
                     className="button secondary no-underline"
-                    onClick={() => setIsUserIconOpened(false)}
+                    onClick={() => {
+                      setIsUserIconOpened(false);
+                      setIsBurgerOpen(false);
+                    }}
                   >
                     Sign In
                   </Link>
                   <Link
                     to={ROUTES.REGISTER}
                     className="button secondary no-underline"
-                    onClick={() => setIsUserIconOpened(false)}
+                    onClick={() => {
+                      setIsUserIconOpened(false);
+                      setIsBurgerOpen(false);
+                    }}
                   >
                     Registration
                   </Link>

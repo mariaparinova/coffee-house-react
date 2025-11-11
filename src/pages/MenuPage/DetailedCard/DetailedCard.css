@@ -162,13 +162,13 @@
 }
 
 @media screen and (max-width: 1439px) {
-  .opened-card {
+  .detailed-card {
     max-width: 688px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .opened-card {
+  .detailed-card {
     max-width: 342px;
 
     .img-container {

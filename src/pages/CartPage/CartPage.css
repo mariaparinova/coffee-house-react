@@ -105,6 +105,14 @@
   .cart-page {
     .cart-details {
       margin: 40px 0 0;
+
+      .address-data {
+        flex-direction: column;
+
+        h3 {
+          text-align: end;
+        }
+      }
     }
 
     .img-container .img {

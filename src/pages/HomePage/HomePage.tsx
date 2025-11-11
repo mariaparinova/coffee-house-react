@@ -25,7 +25,10 @@ export function HomePage() {
             a popular destination for coffee lovers and those seeking a warm and inviting space to
             enjoy their favorite beverage.
           </p>
-          <Link className="button primary no-underline" to={ROUTES.MENU}>
+          <Link
+            className="button primary no-underline"
+            to={ROUTES.MENU.replace(':category', 'coffee')}
+          >
             Menu
             <IconCap />
           </Link>

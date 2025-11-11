@@ -141,6 +141,10 @@ p {
   gap: 8px;
   margin-top: 40px;
   max-width: 400px;
+
+  .color-warning {
+    text-align: center;
+  }
 }
 
 .registration-page .form .button,
@@ -198,5 +202,10 @@ p {
 
   #root {
     padding: 20px 16px;
+  }
+
+  .registration-page .form,
+  .login-page .form {
+    max-width: 380px;
   }
 }

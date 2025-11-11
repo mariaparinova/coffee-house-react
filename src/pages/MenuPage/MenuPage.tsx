@@ -89,7 +89,7 @@ export function MenuPage() {
     }
 
     const categoryStr = category as CategoryName;
-    const isAllCardsVisible = visibleCount ? visibleCount >= data[categoryStr].length : undefined;
+    const isAllCardsVisible = visibleCount ? visibleCount >= data[categoryStr]?.length : undefined;
 
     if (isAllCardsVisible) {
       return;

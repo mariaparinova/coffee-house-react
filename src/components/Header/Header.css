@@ -116,6 +116,13 @@
         gap: 36px;
       }
     }
+
+    .user-container {
+      .buttons-container {
+        right: 50%;
+        transform: translateX(50%);
+      }
+    }
   }
 
   .header.burger-opened {
