@@ -178,7 +178,7 @@ export function DetailedCard() {
 
             return (
               <div key={additive.name} className={additiveClassName} onClick={handleClick}>
-                <div className="additive round">{i}</div>
+                <div className="additive round">{i + 1}</div>
                 <span>{additive.name}</span>
                 <div className="tooltip">
                   <Prices regularPrice={additive.price} discountPrice={additive.discountPrice} />
